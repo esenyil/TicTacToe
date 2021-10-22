@@ -14,7 +14,7 @@
 	*/
 
 // global game variables
-var player, fields, fieldsPlayed, fieldsPlayer0, fieldsPlayer1, msg, playButton, result;
+var player, fields, fieldsPlayed, fieldsPlayer0, fieldsPlayer1, msg, playButton, playerOneScore, playerTwoScore, draw;
 
 player = 0;
 
@@ -27,10 +27,40 @@ fieldsPlayed = [];
 fieldsPlayer0 = [];
 fieldsPlayer1 = [];
 
-result = document.querySelector('.result');
+playerOneScore = 0;
+playerTwoScore = 0;
+draw = 0;
+
+localStorage.getItem('Player1LS');
+localStorage.getItem('Player2LS');
+localStorage.getItem('Draw');
+
+if (localStorage.getItem('Player1LS') !== 0) {
+	playerOneScore = Number(localStorage.getItem('Player1LS'));
+}
+
+if (localStorage.getItem('Player2LS') !== 0) {
+	playerTwoScore = Number(localStorage.getItem('Player2LS'));
+}
+
+if (localStorage.getItem('Draw') !== 0) {
+	draw = Number(localStorage.getItem('Draw'));
+}
+
+//displaying score on page
+document.getElementById('player1').innerHTML = 'Player X: ' + Number(localStorage.getItem('Player1LS'));
+document.getElementById('player2').innerHTML = 'Player O: ' + Number(localStorage.getItem('Player2LS'));
+document.getElementById('draw').innerHTML = 'Draw: ' + Number(localStorage.getItem('Draw'));
 
 msg = document.getElementById('msg');
 playButton = document.getElementById('playAgain').addEventListener('click', playAgain);
+clearButton = document.getElementById('clear').addEventListener('click', clearAll);
+
+function clearAll() {
+	//clearin all data from localStorage
+	localStorage.clear();
+	window.location.reload(true);
+};
 
 for (let i = 0; i < fields.length; i++) {
 	fields[i].addEventListener('click', play)
@@ -38,7 +68,6 @@ for (let i = 0; i < fields.length; i++) {
 
 function play() {
 	// game core mechanics, marking the fields
-	//console.log('you called me?')
 	if (fieldsPlayed.includes(this.id)) {
 		alert('No can do')
 	}
@@ -72,8 +101,10 @@ function win() {
 
 	) {
 		// player 0 won
-		msg.innerHTML = 'Player X won!'
+		msg.innerHTML = 'Player X won!';
+		playerOneScore++;
 		gameOver();
+		gameStats();
 	} else if (
 		fieldsPlayer1.includes(1) && fieldsPlayer1.includes(2) && fieldsPlayer1.includes(3) ||
 		fieldsPlayer1.includes(4) && fieldsPlayer1.includes(5) && fieldsPlayer1.includes(6) ||
@@ -85,12 +116,16 @@ function win() {
 		fieldsPlayer1.includes(3) && fieldsPlayer1.includes(5) && fieldsPlayer1.includes(7)
 	) {
 		// player 1 won
-		msg.innerHTML = 'Player O won!'
+		msg.innerHTML = 'Player O won!';
+		playerTwoScore++;
 		gameOver();
+		gameStats();
 	} else if (fieldsPlayed.length == 9) {
 		//game is a draw
-		msg.innerHTML = 'It\'s a draw '
+		msg.innerHTML = 'It\'s a draw ';
+		draw++;
 		gameOver();
+		gameStats();
 	}
 }
 
@@ -108,46 +143,18 @@ function playAgain() {
 	window.location.reload(true);
 }
 
-// const scoreResult1 = document.getElementById('player1')
-// const scoreResult2 = document.getElementById('player2')
-// let player1 = 0;
-// let player2 = 0;
-// let player1Score = localStorage.getItem('player1') || 0;
-// let player2Score = localStorage.getItem('player2') || 0;
-// scoreResult1.textContent = 'Player 1: ' + player1Score;
-// scoreResult2.textContent = 'Player 2: ' + player2Score;
-
 function gameStats() {
+	//setting and getting score from localstorage
+	localStorage.setItem('Player1LS', playerOneScore);
+	localStorage.setItem('Player2LS', playerTwoScore);
+	localStorage.setItem('Draw', draw);
 
-	//game stats using local storage
-	if (localStorage.setItem('player 1: ') || 0) {
-		let player1 = localStorage.getItem('Player 1: ');
-		player1++
-		console.log(player1);
+	localStorage.Player1LS = Number(localStorage.Player1LS);
+	localStorage.Player2LS = Number(localStorage.Player2LS);
+	localStorage.Draw = Number(localStorage.Draw);
 
-	} else if (localStorage.setItem('player1') || 0) {
-		let player2 = localStorage.getItem('Player 2: ');
-		player2++;
-		console.log(player2);
-
-	} else if (fieldsPlayed.length == 9) {
-		localStorage.setItem('Draw: ', 0);
-		let draw = localStorage('Draw: ')
-		draw++;
-		console.log(draw);
-	}
-
+	document.getElementById('player1').innerHTML = 'Player X: ' + localStorage.Player1LS;
+	document.getElementById('player2').innerHTML = 'Player O: ' + localStorage.Player2LS;
+	document.getElementById('draw').innerHTML = 'Draw: ' + localStorage.Draw;
 }
 
-// function gameStats() {
-// 	if(typeof(Storage) !== "undefined") {
-// 	  if (localStorage.score) {
-// 		localStorage.setItem.score = Number(localStorage.score)+1;
-// 	  } else {
-// 		localStorage.score = 1;
-// 	  }
-// 	  document.querySelector(".result").innerHTML = "Player 1: " + localStorage.getItem.score;
-// 	} else {
-// 	  document.querySelector(".result").innerHTML = "Sorry, your browser does not support web storage...";
-// 	}
-//   }
