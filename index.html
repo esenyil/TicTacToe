@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="main.js" defer></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+	<title>Tic Tac Toe</title>
+</head>
+
+<body>
+	<h1>TIC TAC TOE, 2 player</h1>
+	<table>
+		<tbody class="container">
+			<tr class="row">
+				<td class="col" id="1">&nbsp;</td>
+				<td class="col" id="2">&nbsp;</td>
+				<td class="col" id="3">&nbsp;</td>
+			</tr>
+			<tr class="row">
+				<td class="col" id="4">&nbsp;</td>
+				<td class="col" id="5">&nbsp;</td>
+				<td class="col" id="6">&nbsp;</td>
+			</tr>
+			<tr class="row">
+				<td class="col" id="7">&nbsp;</td>
+				<td class="col" id="8">&nbsp;</td>
+				<td class="col" id="9">&nbsp;</td>
+			</tr>
+		</tbody>
+	</table>
+	<p><button onclick="clickCounter()" type="button">Click me!</button></p>
+	<div class="result">
+		<!-- <h3>Score:</h3>
+		<div id="player1"></div>
+		<div id="player2"></div> -->
+	</div>
+	<div class="msg_btn">
+		<h2 id="msg">Click fields to play!</h2>
+		<button id="playAgain" class="btn btn-dark">Play again</button>
+	</div>
+</body>
+
+</html>

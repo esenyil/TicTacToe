@@ -1,0 +1,51 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1{
+    text-align: center;
+    margin-top: 40px;
+}
+
+table{
+    display: grid;
+    
+    margin-top: 40px;
+}
+
+.col{
+    background-color: rgb(230, 195, 255);
+    border: solid white 3px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 100px;
+    max-height: 150px;
+    max-width: 150px;
+}
+
+.msg_btn{
+    position: absolute;
+    top: 130px;
+    right: 100px;
+    text-align: center;
+    vertical-align: middle;   
+}
+
+#playAgain{
+    margin-top: 300px;
+}
+
+.result{
+    position: absolute;
+    top: 250px;
+    right: 200px;
+    text-align: center;
+    vertical-align: middle; 
+}
+
+p{
+    font-size: large;
+    font-weight: bolder;
+}
