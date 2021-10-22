@@ -57,7 +57,7 @@ playButton = document.getElementById('playAgain').addEventListener('click', play
 clearButton = document.getElementById('clear').addEventListener('click', clearAll);
 
 function clearAll() {
-	//clearin all data from localStorage
+	//clearing all data from localStorage
 	localStorage.clear();
 	window.location.reload(true);
 };
