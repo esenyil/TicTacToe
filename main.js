@@ -23,7 +23,6 @@ fields = document.getElementsByTagName('td');
 console.log(fields);
 
 fieldsPlayed = [];
-
 fieldsPlayer0 = [];
 fieldsPlayer1 = [];
 
@@ -102,6 +101,7 @@ function win() {
 	) {
 		// player 0 won
 		msg.innerHTML = 'Player X won!';
+		msg.style.color = '#E6C3FF';
 		playerOneScore++;
 		gameOver();
 		gameStats();
@@ -117,12 +117,14 @@ function win() {
 	) {
 		// player 1 won
 		msg.innerHTML = 'Player O won!';
+		msg.style.color = '#E6C3FF';
 		playerTwoScore++;
 		gameOver();
 		gameStats();
 	} else if (fieldsPlayed.length == 9) {
 		//game is a draw
 		msg.innerHTML = 'It\'s a draw ';
+		msg.style.color = '#E6C3FF';
 		draw++;
 		gameOver();
 		gameStats();
@@ -134,12 +136,11 @@ function gameOver() {
 	for (let i = 0; i < fields.length; i++) {
 		fields[i].removeEventListener('click', play)
 	}
-	alert('game over');
+	
 }
 
 function playAgain() {
 	// restart the game
-
 	window.location.reload(true);
 }
 
